@@ -13,6 +13,11 @@ npm start
 
 ### Restart
 
+docker stop random-server
+docker start random-server
+
+### After rebooting
+
 To restart the server after rebooting:
 
 ```
