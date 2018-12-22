@@ -1,7 +1,5 @@
 
-import React from 'react';
-
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -16,7 +14,7 @@ interface PeopleViewerProps {
   data: any;
 }
 
-export class PeopleViewer extends React.Component<any, any> {
+export class PeopleViewer extends Component<any, any> {
 
   state = {
     data: [],
