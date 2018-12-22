@@ -1,3 +1,36 @@
+# people-viewer
+--
+
+## Usage
+
+```
+docker run -d -p 1220:3100 --name random-server mitchallen/random-server
+
+npm start
+```
+
+* * *
+
+### Restart
+
+To restart the server after rebooting:
+
+```
+docker start random-server
+```
+
+* * *
+
+### Cleanup
+
+```
+docker stop random-server
+docker rm random-server
+docker rmi mitchallen/random-server
+```
+
+* * *
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
