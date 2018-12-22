@@ -1,5 +1,6 @@
 # people-viewer
---
+
+Example ReactJS / TypeScript person record viewer.
 
 ## Usage
 
@@ -13,8 +14,10 @@ npm start
 
 ### Restart
 
+```
 docker stop random-server
 docker start random-server
+```
 
 ### After rebooting
 
