@@ -1,14 +1,15 @@
 
 import React, { Component } from 'react';
+import './PeopleViewer.css';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import FaceIcon from '@material-ui/icons/Face';
-import Divider from '@material-ui/core/Divider';
 
-import './PeopleViewer.css';
+import { PeopleDialog } from './PeopleDialog';
+
 
 interface PeopleViewerProps {
   data: any;
@@ -17,16 +18,19 @@ interface PeopleViewerProps {
 export class PeopleViewer extends Component<any, any> {
 
   state = {
+    openKey: "",
     data: [],
   };
 
-  constructor( props: PeopleViewerProps) {
+  constructor(props: PeopleViewerProps) {
     super(props);
     this.state = {
+      openKey: "",
       data: this.props.data,
     };
 
     this.handleClickListItem = this.handleClickListItem.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
 
   componentWillReceiveProps(nextProps: any) {
@@ -35,11 +39,15 @@ export class PeopleViewer extends Component<any, any> {
     }
   }
 
-  handleClickListItem = (name: string) => (event: any) => {
-    console.log(name);
-    // this.setState({
-    //   [name]: event.target.value,
-    // });
+  handleClickListItem = (email: string) => (event: any) => {
+    console.log(email);
+    this.setState({ openKey: email});
+  };
+
+  handleClose = ( record: any) => {
+    // ignore record for now - could use for update dialog
+    // console.log(JSON.stringify(record));  
+    this.setState({ openKey: '' });
   };
 
   render() {
@@ -48,12 +56,20 @@ export class PeopleViewer extends Component<any, any> {
     const darkPink = '#E75480';
 
     const listItems = this.state.data.map((el: any) =>
-      <ListItem button key={el.email} onClick={this.handleClickListItem(el.email)}>
-        <ListItemIcon>
-          <FaceIcon style={{color: el.gender == 'female' ? darkPink : 'blue'}} />
-        </ListItemIcon>
-        <ListItemText primary={el.last + ", " + el.first} secondary={el.email}  />
-      </ListItem>);
+      <React.Fragment key={el.email}>
+        <ListItem button onClick={this.handleClickListItem(el.email)}>
+          <ListItemIcon>
+            <FaceIcon style={{ color: el.gender == 'female' ? darkPink : 'blue' }} />
+          </ListItemIcon>
+          <ListItemText primary={el.last + ", " + el.first} secondary={el.email} />
+        </ListItem>
+        <PeopleDialog 
+          open={this.state.openKey === el.email}
+          onClose={this.handleClose}
+          record={el}
+        />
+      </React.Fragment>
+    );
 
     return (
       <List component="nav">

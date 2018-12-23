@@ -79,8 +79,8 @@ export class PeopleCard extends Component<any, any> {
               </Typography>
                     <CardContent>
                         <TextField
-                            id="standard-name"
-                            label="Name"
+                            id="source-url"
+                            label="Source URL"
                             style={{ width: '300px', margin: '0 auto' }}
                             // className={classes.textField}
                             value={this.state.query}
